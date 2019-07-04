@@ -347,7 +347,7 @@ extern char	*strcpy	   Args((String,String));
 extern char     *strcat	   Args((String,String));
 #endif
 #endif
-#if !(LINUX | OSX)
+#if !(LINUX)
 extern char	*getenv	   Args((char *));
 extern int      system	   Args((const char *));
 extern double   atof	   Args((char *));

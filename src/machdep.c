@@ -278,7 +278,7 @@ Void gcCStack() {			/* Garbage collect elements off    */
  * Terminal dependent stuff:
  * ------------------------------------------------------------------------*/
 
-#if   (TERMIO_IO | SGTTY_IO | TERMIOS_IO | TERMS)
+#if   (TERMIO_IO | SGTTY_IO | TERMIOS_IO)
 
 #if TERMIO_IO
 #include <termio.h>
