@@ -35,7 +35,7 @@
 #define MINIX68K 0	/* For Minix68k with gcc			UN */
 #define AMIGA    0	/* For Amiga using gcc 2.2.2			UN */
 #define HPUX     0      /* For HPUX using gcc				   */
-#define LINUX    1      /* For Linux using gcc				UN */
+#define LINUX    0      /* For Linux using gcc				UN */
 #define RISCOS   0	/* For Acorn DesktopC and RISCOS2 or 3		   */
 #define ALPHA	 0	/* For DEC Alpha with OSF/1 (32 bit ints, no gofc) */
 #define SVR4	 0	/* For SVR4 using GCC2.2			   */
@@ -45,7 +45,7 @@
 #define SGI4	 0	/* For SiliconGraphics Indigo, IRIX v*4*.0.5	UN */
 #define NETBSD	 0	/* For NetBSD-current				   */
 #define WIN32	 0	/* rusi aug 2013 */
-
+#define OSX 1 /* osx jul 2019 */
 /*---------------------------------------------------------------------------
  * To add a new machine/compiler, add a new macro line above, add the new
  * to the appropriate flags below and add a `machine specific' section in the
@@ -83,7 +83,7 @@
 
 #define UNIX		(SUNOS  | NEXTSTEP | HPUX | NEXTGCC | LINUX | AMIGA | \
 			 MINIX68K | ALPHA | OS2 | SVR4 | ULTRIX | AIX | MIPS |\
-			 SGI4 | NETBSD)
+			 SGI4 | NETBSD | OSX)
 #define SMALL_GOFER	(TURBOC | BCC)
 #define REGULAR_GOFER	(RISCOS | DJGPP | ZTC | ATARI)
 #define LARGE_GOFER	(UNIX   | WATCOM | WIN32)
@@ -92,7 +92,7 @@
 #define TERMIO_IO	(LINUX  | HPUX | OS2 | SVR4 | SGI4)
 #define SGTTY_IO	(SUNOS  | NEXTSTEP | NEXTGCC | AMIGA | MINIX68K | \
 			 ALPHA  | ULTRIX | AIX | MIPS)
-#define TERMIOS_IO      (NETBSD)
+#define TERMIOS_IO      (NETBSD | OSX)
 #define BREAK_FLOATS	(TURBOC | BCC)
 #define HAS_FLOATS	(REGULAR_GOFER | LARGE_GOFER | BREAK_FLOATS)
 
@@ -208,7 +208,7 @@ extern  int  kbhit	Args((void));
 #define	farCalloc(n,s)	(Void *)valloc(((unsigned)n)*((unsigned)s))
 #endif
 
-#if     (HPUX | DJGPP | ZTC | LINUX | ALPHA | OS2 | SVR4 | AIX | SGI4 | NETBSD | WIN32)
+#if     (HPUX | DJGPP | ZTC | LINUX | ALPHA | OS2 | SVR4 | AIX | SGI4 | NETBSD | WIN32 | OSX)
 #include <stdlib.h>
 #include <string.h>
 #define  far
@@ -347,7 +347,7 @@ extern char	*strcpy	   Args((String,String));
 extern char     *strcat	   Args((String,String));
 #endif
 #endif
-#if !LINUX
+#if !(LINUX | OSX)
 extern char	*getenv	   Args((char *));
 extern int      system	   Args((const char *));
 extern double   atof	   Args((char *));

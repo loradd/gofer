@@ -197,7 +197,7 @@ Cell *CStackBase;			/* Retain start of C control stack */
    not be modified, since the offset '5' assumes that only v1 is used inside
    this function. Hence we do all the real work in gcARM.
 */
-		  
+
 #define spreg 13 /* C3 has SP=R13 */
 
 #define previousFrame(fp)	((int *)((fp)[-3]))
@@ -254,7 +254,7 @@ Void gcCStack() {			/* Garbage collect elements off    */
 #if SMALL_GOFER
     if (((long)(ptr) - (long)(CStackBase))&1)
 	fatal("gcCStack");
-#else 
+#else
     if (((long)(ptr) - (long)(CStackBase))&3)
 	fatal("gcCStack");
 #endif
@@ -278,7 +278,7 @@ Void gcCStack() {			/* Garbage collect elements off    */
  * Terminal dependent stuff:
  * ------------------------------------------------------------------------*/
 
-#if   (TERMIO_IO | SGTTY_IO | TERMIOS_IO)
+#if   (TERMIO_IO | SGTTY_IO | TERMIOS_IO | TERMS)
 
 #if TERMIO_IO
 #include <termio.h>
